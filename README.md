@@ -12,3 +12,6 @@ csv2xlsx csvFile
 ```bash
 csv2xlsx
 ```
+
+## Download
+[https://github.com/nadoo/csv2xlsx/releases](https://github.com/nadoo/csv2xlsx/releases "click to the download page")
