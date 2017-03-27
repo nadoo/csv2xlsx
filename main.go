@@ -40,7 +40,10 @@ func csv2xlsx(csvPath string) {
 	defer csvFile.Close()
 
 	reader := csv.NewReader(BOMReader(csvFile))
+
 	xlsxFile := xlsx.NewFile()
+	xlsx.SetDefaultFont(10, "Verdana")
+
 	sheetNo := 0
 	sheetName := fmt.Sprintf("Sheet%d", sheetNo)
 	sheet, _ := xlsxFile.AddSheet(sheetName)
