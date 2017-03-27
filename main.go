@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"path"
 	"path/filepath"
 	"strings"
 
@@ -65,16 +64,33 @@ func csv2xlsx(csvPath string) {
 
 		fields, err = reader.Read()
 	}
-	if err != nil {
-		fmt.Printf(err.Error())
-	}
 
-	fileName := strings.TrimSuffix(path.Base(csvPath), ".csv")
+	fileName := strings.TrimSuffix(filepath.Base(csvPath), ".csv")
 	outFile := fileName + ".xlsx"
 	xlsxFile.Save(outFile)
 }
 
+func showHelp() {
+	fmt.Println()
+	fmt.Println("-")
+	fmt.Println("Usage: csv2xlsx")
+	fmt.Println("       csv2xlsx [FILEPATH]")
+	fmt.Println()
+	fmt.Println("Example:")
+	fmt.Println("     csv2xlsx")
+	fmt.Println("       -Convert all csv files in the folder to xlsx.")
+	fmt.Println("     csv2xlsx ./test.csv")
+	fmt.Println("       -Convert test.csv to xlsx.")
+	fmt.Println()
+	fmt.Println("   Ver: 1.0, Author: NadOo")
+	fmt.Println("   Source: https://github.com/nadoo/csv2xlsx")
+	fmt.Println("-")
+	fmt.Println()
+}
+
 func main() {
+	showHelp()
+
 	if len(os.Args) > 1 {
 		csv2xlsx(os.Args[1])
 		return
@@ -82,6 +98,7 @@ func main() {
 
 	csvFiles, _ := filepath.Glob("./*.csv")
 	for _, csvFile := range csvFiles {
+		fmt.Printf("Processing csv file: %s\n", csvFile)
 		csv2xlsx(csvFile)
 	}
 }
