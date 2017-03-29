@@ -68,6 +68,11 @@ func csv2xlsx(csvPath string) {
 		fields, err = reader.Read()
 	}
 
+	if err != nil && err != io.EOF {
+		fmt.Printf(err.Error())
+		return
+	}
+
 	fileName := strings.TrimSuffix(filepath.Base(csvPath), ".csv")
 	outFile := fileName + ".xlsx"
 	xlsxFile.Save(outFile)
