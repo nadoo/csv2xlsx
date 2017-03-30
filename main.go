@@ -48,12 +48,12 @@ func csv2xlsx(csvPath string) {
 	sheetName := fmt.Sprintf("Sheet%d", sheetNo)
 	sheet, _ := xlsxFile.AddSheet(sheetName)
 
-	lineNum := 0
+	lineNo := 0
 	fields, err := reader.Read()
 	for err == nil {
-		lineNum++
+		lineNo++
 		// a sheet can contain 1048576 rows, 16384 columns.
-		if lineNum%1000000 == 0 {
+		if lineNo%1000000 == 0 {
 			sheetNo++
 			sheetName = fmt.Sprintf("Sheet%d", sheetNo)
 			sheet, _ = xlsxFile.AddSheet(sheetName)
