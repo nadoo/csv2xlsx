@@ -19,16 +19,16 @@ const (
 )
 
 // BOMReader returns a Reader that discards the BOM header.
-func BOMReader(r io.Reader) io.Reader {
-	buf := bufio.NewReader(r)
-	b, err := buf.Peek(3)
+func BOMReader(ir io.Reader) io.Reader {
+	r := bufio.NewReader(ir)
+	b, err := r.Peek(3)
 	if err != nil {
-		return buf
+		return r
 	}
 	if b[0] == bom0 && b[1] == bom1 && b[2] == bom2 {
-		buf.Discard(3)
+		r.Discard(3)
 	}
-	return buf
+	return r
 }
 
 func csv2xlsx(csvPath string) {
