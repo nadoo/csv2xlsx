@@ -18,6 +18,8 @@ const (
 	bom2 = 0xbf
 )
 
+var version = "1.0.1"
+
 // BOMReader returns a Reader that discards the BOM header.
 func BOMReader(ir io.Reader) io.Reader {
 	r := bufio.NewReader(ir)
@@ -90,7 +92,7 @@ func showHelp() {
 	fmt.Println("     csv2xlsx ./test.csv")
 	fmt.Println("       -Convert test.csv to xlsx.")
 	fmt.Println()
-	fmt.Println("   Ver: 1.0.0, Author: NadOo")
+	fmt.Println("   Ver: " + version + ", Author: NadOo")
 	fmt.Println("   Source: https://github.com/nadoo/csv2xlsx")
 	fmt.Println("-")
 	fmt.Println()
