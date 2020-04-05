@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/tealeg/xlsx"
+	"github.com/tealeg/xlsx/v2"
 )
 
 const (
@@ -18,7 +18,7 @@ const (
 	bom2 = 0xbf
 )
 
-var version = "1.0.1"
+var version = "1.1.0"
 
 // BOMReader returns a Reader that discards the BOM header.
 func BOMReader(ir io.Reader) io.Reader {
