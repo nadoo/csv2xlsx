@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/tealeg/xlsx/v2"
+	"github.com/tealeg/xlsx/v3"
 )
 
 const (
@@ -18,7 +18,7 @@ const (
 	bom2 = 0xbf
 )
 
-var version = "1.1.0"
+var version = "1.2.0"
 
 // BOMReader returns a Reader that discards the BOM header.
 func BOMReader(ir io.Reader) io.Reader {
@@ -34,6 +34,8 @@ func BOMReader(ir io.Reader) io.Reader {
 }
 
 func csv2xlsx(csvPath string) {
+	fmt.Printf("\nProcessing: %s", csvPath)
+
 	csvFile, err := os.Open(csvPath)
 	if err != nil {
 		fmt.Printf(err.Error())
@@ -78,6 +80,8 @@ func csv2xlsx(csvPath string) {
 	fileName := strings.TrimSuffix(filepath.Base(csvPath), ".csv")
 	outFile := fileName + ".xlsx"
 	xlsxFile.Save(outFile)
+
+	fmt.Printf(" -> %s", outFile)
 }
 
 func showHelp() {
@@ -95,7 +99,6 @@ func showHelp() {
 	fmt.Println("   Ver: " + version + ", Author: NadOo")
 	fmt.Println("   Source: https://github.com/nadoo/csv2xlsx")
 	fmt.Println("-")
-	fmt.Println()
 }
 
 func main() {
@@ -108,7 +111,6 @@ func main() {
 
 	csvFiles, _ := filepath.Glob("./*.csv")
 	for _, csvFile := range csvFiles {
-		fmt.Printf("Processing csv file: %s\n", csvFile)
 		csv2xlsx(csvFile)
 	}
 }
