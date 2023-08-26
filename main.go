@@ -18,7 +18,7 @@ const (
 	bom2 = 0xbf
 )
 
-var version = "1.2.0"
+var version = "1.3.0"
 
 // BOMReader returns a Reader that discards the BOM header.
 func BOMReader(ir io.Reader) io.Reader {
@@ -38,7 +38,7 @@ func csv2xlsx(csvPath string) {
 
 	csvFile, err := os.Open(csvPath)
 	if err != nil {
-		fmt.Printf(err.Error())
+		fmt.Print(err.Error())
 		return
 	}
 	defer csvFile.Close()
@@ -73,7 +73,7 @@ func csv2xlsx(csvPath string) {
 	}
 
 	if err != nil && err != io.EOF {
-		fmt.Printf(err.Error())
+		fmt.Print(err.Error())
 		return
 	}
 
